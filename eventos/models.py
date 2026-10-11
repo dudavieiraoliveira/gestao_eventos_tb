@@ -21,7 +21,17 @@ class Participante(models.Model):
     def __str__(self):
         return self.nome
 
+# classe Manager - guarda consultas personalizadas
+class EventoManager(models.Manager):
+    def disponiveis(self):
+        return self.filter(
+            ativo=True,
+            vagas_disponiveis__gt=0
+        )
+    
 class Evento(models.Model):
+    # faz a ligação com nossa classe EventoManager
+    objects = EventoManager()
 
 # relação 1:N + related_name (acesso)
 # (um evento pode ter apenas um organizador /
