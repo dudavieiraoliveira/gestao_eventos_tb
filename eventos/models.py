@@ -20,3 +20,15 @@ class Participante(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Evento(models.Model):
+    nome = models.CharField(max_length=150)
+    descricao = models.TextField()
+    data = models.DateTimeField()
+    local = models.CharField(max_length=200)
+    vagas_total = models.PositiveIntegerField()
+    vagas_disponiveis = models.PositiveIntegerField()
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nome
